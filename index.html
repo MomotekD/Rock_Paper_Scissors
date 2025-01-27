@@ -10,6 +10,13 @@
         let userScore = 0;
         let computerScore = 0;
 
-    </script>
+        function getComputerChoice(){
+            const Choices = ["rock", "paper", "scissors"];
+            const ComputerChoice = Math.floor(Math.random() * 3);
+
+            return Choices[ComputerChoice];
+        }
+
+        </script>
 </body>
 </html>
