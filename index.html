@@ -25,9 +25,51 @@
                 return HumanChoice;
             }else{
                 console.log("'" + HumanChoice + "' " + 'There is no such choice');
-                return;
+                return getHumanChoice();
             }       
         }
+
+        function playRound(humanChoice, ComputerChoice) {
+            if (humanChoice == "rock" && ComputerChoice == "paper"){
+                computerScore++;
+                console.log("Computer wins! Paper beats rock. Score: Player " + userScore + " Computer " + computerScore);
+            }else if(humanChoice == "paper" && ComputerChoice == "scissors"){
+                computerScore++;
+                console.log(" Computer wins! Scissors beats paper. Score: Player " + userScore + " Computer " + computerScore);
+            }else if(humanChoice == "scissors" && ComputerChoice == "rock"){
+                computerScore++;
+                console.log(" Computer wins! Rock beats scissors. Score: Player " + userScore + " Computer " + computerScore);
+            }else if(humanChoice == ComputerChoice){
+                console.log(humanChoice + " and " + ComputerChoice + " It's a draw! Score: Player " + userScore + " Computer " + computerScore);
+            }else{
+                userScore++;
+                console.log(" Human wins! " + humanChoice + " beats " + ComputerChoice + ". Score: Player " + userScore + " Computer " + computerScore)
+            }
+        }
+
+        
+
+        function playGame(){
+            userScore = 0;
+            computerScore = 0;
+
+            for(let i = 1; i < 6; i++){
+                const computerSelection = getComputerChoice();
+                const humanSelection = getHumanChoice();
+
+                playRound(humanSelection, computerSelection);
+            }
+
+            if (userScore > computerScore){
+                console.log("Congratulations, you won the game with the score: " + userScore + " to " + computerScore);
+            }else if(userScore < computerScore){
+                console.log("Unfortunately, you lost the game with a score: " + computerScore + " to " + userScore);
+            }else{
+                console.log("It's a tie with the score: " + computerScore + " to " + userScore);
+            }
+        }
+
+        playGame();
     </script>
 </body>
 </html>
