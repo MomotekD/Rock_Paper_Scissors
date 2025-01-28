@@ -17,6 +17,17 @@
             return Choices[ComputerChoice];
         }
 
-        </script>
+        function getHumanChoice(){
+            const Choices = ["rock", "paper", "scissors"];
+            const HumanChoice = prompt("Chose between one: Rock, Paper or Scissors").toLowerCase();
+
+            if (Choices.includes(HumanChoice)) {
+                return HumanChoice;
+            }else{
+                console.log("'" + HumanChoice + "' " + 'There is no such choice');
+                return;
+            }       
+        }
+    </script>
 </body>
 </html>
