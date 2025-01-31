@@ -6,13 +6,25 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    
+    <div class="main">
+        <button onclick="getHumanChoice(this)" value="rock" class="buttons">Rock</button>
+        <button onclick="getHumanChoice(this)" value="paper" class="buttons">Paper</button>
+        <button onclick="getHumanChoice(this)" value="scissors" class="buttons">Scissors</button>
+        <button onclick="playRound(humanChoice, getComputerChoice())">Play Round</button>
+    </div>
 
-    <button>Rock</button>
-    <button>Paper</button>
-    <button>Scissors</button>
+    <div class="results">
+
+    </div>
+    
     <script>
+        const results = document.querySelector(".results");
+        const resultLabel = document.createElement("p");
+
         let userScore = 0;
         let computerScore = 0;
+        let humanChoice;
 
         function getComputerChoice(){
             const Choices = ["rock", "paper", "scissors"];
@@ -21,41 +33,49 @@
             return Choices[ComputerChoice];
         }
 
-        function getHumanChoice(){
+        function getHumanChoice(button){
             const Choices = ["rock", "paper", "scissors"];
-            const HumanChoice = prompt("Chose between one: Rock, Paper or Scissors").toLowerCase();
+            humanChoice = button.value.toLowerCase();
 
-            if (Choices.includes(HumanChoice)) {
-                return HumanChoice;
-            }else{
-                console.log("'" + HumanChoice + "' " + 'There is no such choice');
-                return getHumanChoice();
-            }       
+            console.log(humanChoice);
+            return humanChoice;
         }
+
+        const humanSelection = humanChoice;
+        const computerSelection = getComputerChoice();
 
         function playRound(humanChoice, ComputerChoice) {
+            if(userScore === 5 || computerScore === 5){
+                if(userScore > computerScore){
+                    resultLabel.textContent = "Player wins! with score " + userScore + " to " + computerScore;
+                }else{
+                    resultLabel.textContent = "Computer wins! with score " + userScore + " to " + computerScore;
+                }
+                userScore = 0;
+                computerScore = 0;
+                results.appendChild(resultLabel);
+                return
+            }
+
             if (humanChoice == "rock" && ComputerChoice == "paper"){
                 computerScore++;
-                console.log("Computer wins! Paper beats rock. Score: Player " + userScore + " Computer " + computerScore);
+                resultLabel.textContent = "Computer wins! Paper beats rock. Score: Player " + userScore + " Computer " + computerScore;
             }else if(humanChoice == "paper" && ComputerChoice == "scissors"){
                 computerScore++;
-                console.log(" Computer wins! Scissors beats paper. Score: Player " + userScore + " Computer " + computerScore);
+                resultLabel.textContent = " Computer wins! Scissors beats paper. Score: Player " + userScore + " Computer " + computerScore;
             }else if(humanChoice == "scissors" && ComputerChoice == "rock"){
                 computerScore++;
-                console.log(" Computer wins! Rock beats scissors. Score: Player " + userScore + " Computer " + computerScore);
+                resultLabel.textContent = " Computer wins! Rock beats scissors. Score: Player " + userScore + " Computer " + computerScore;
             }else if(humanChoice == ComputerChoice){
-                console.log(humanChoice + " and " + ComputerChoice + " It's a draw! Score: Player " + userScore + " Computer " + computerScore);
+                resultLabel.textContent = humanChoice + " and " + ComputerChoice + " It's a draw! Score: Player " + userScore + " Computer " + computerScore;
+            }else if(humanChoice === null){
+                resultLabel.textContent = "Please select rock, paper or scissors."
             }else{
                 userScore++;
-                console.log(" Human wins! " + humanChoice + " beats " + ComputerChoice + ". Score: Player " + userScore + " Computer " + computerScore)
+                resultLabel.textContent = " Human wins! " + humanChoice + " beats " + ComputerChoice + ". Score: Player " + userScore + " Computer " + computerScore;
             }
+            results.appendChild(resultLabel);
         }
-
-        
-
-        
-
-        playGame();
     </script>
 </body>
 </html>
