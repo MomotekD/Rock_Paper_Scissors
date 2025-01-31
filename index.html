@@ -6,6 +6,10 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+
+    <button>Rock</button>
+    <button>Paper</button>
+    <button>Scissors</button>
     <script>
         let userScore = 0;
         let computerScore = 0;
@@ -49,25 +53,7 @@
 
         
 
-        function playGame(){
-            userScore = 0;
-            computerScore = 0;
-
-            for(let i = 1; i < 6; i++){
-                const computerSelection = getComputerChoice();
-                const humanSelection = getHumanChoice();
-
-                playRound(humanSelection, computerSelection);
-            }
-
-            if (userScore > computerScore){
-                console.log("Congratulations, you won the game with the score: " + userScore + " to " + computerScore);
-            }else if(userScore < computerScore){
-                console.log("Unfortunately, you lost the game with a score: " + computerScore + " to " + userScore);
-            }else{
-                console.log("It's a tie with the score: " + computerScore + " to " + userScore);
-            }
-        }
+        
 
         playGame();
     </script>
